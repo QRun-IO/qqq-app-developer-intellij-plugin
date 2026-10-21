@@ -1,0 +1,31 @@
+name: IntelliJ plugin
+'on':
+  push:
+    branches:
+    - main
+    - develop
+    tags:
+    - v*
+  pull_request:
+    branches:
+    - main
+    - develop
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Sign and publish the selected vVERSION tag after approval
+        type: boolean
+        default: false
+      version:
+        description: Exact source version for signed Marketplace publication
+        type: string
+        default: ''
+permissions:
+  contents: read
+jobs:
+  plugin:
+    uses: QRun-IO/qqq-orb/.github/workflows/intellij-plugin.yml@bfd41c8e0d9adb6ee25f3cc8f7f2eb7da9b28d3c
+    with:
+      publish: ${{ github.event_name == 'workflow_dispatch' && inputs.publish }}
+      version: ${{ inputs.version || '' }}
+    secrets: inherit
