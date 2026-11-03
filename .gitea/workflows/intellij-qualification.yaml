@@ -5,6 +5,7 @@ permissions:
   contents: read
 jobs:
   qualify:
-    uses: self:KofTwentyTwo/platform-ci/.gitea/workflows/intellij-plugin.yaml@971c150f3c092925b79e053104bc8cc5f26f11ce
+    uses: self:KofTwentyTwo/platform-ci/.gitea/workflows/intellij-plugin.yaml@d6d35a887fa2a3c081c8639e19ba2188432de736
     with:
-      runner: browser-build
+      runner: linux-small
+      build-runner: browser-build
